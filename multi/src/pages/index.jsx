@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ContactInfo, PrivateInfo, ProfileImage, Success } from "@/components";
+import { Contact, Private, ProfileImage, Success } from "@/components/steps";
 
 const Home = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const handleClick = () => {
     setStep(step + 1);
@@ -10,13 +10,10 @@ const Home = () => {
   const handlePrev = () => {
     setStep(step - 1);
   };
+  const Container = [Contact, Private, ProfileImage, Success][step];
   return (
     <div>
-      {step === 1 && <ContactInfo />}
-      {step === 2 && <PrivateInfo />}
-      {step === 3 && <ProfileImage />}
-      {step === 4 && <Success />}
-
+      <Container />
       <button onClick={handlePrev}>Previous</button>
       <button onClick={handleClick}>Continue</button>
     </div>
