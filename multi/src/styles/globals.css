@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 body {
   background-color: #f0f2f5;
@@ -7,4 +7,14 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
+}
+.buttonCon {
+  display: flex;
+  margin-top: -90px;
+  /* background-color: aqua; */
+  justify-content: center;
+  gap: 17px;
+}
+.err {
+  color: red;
 }
