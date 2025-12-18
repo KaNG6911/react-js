@@ -1,37 +1,64 @@
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Contact, Private, ProfileImage, Success } from '@/components/steps'
-import { initialValues } from '@/constants/initial'
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Contact, Private, ProfileImage, Success } from "@/components/steps";
+import { initialValues } from "@/constants/initial";
+import {
+  validateStep,
+  validateStepThree,
+  validateStepTwo,
+} from "@/utils/validators";
 
-const Home = (handleSubmit) => {
-  const [step, setStep] = useState(0)
-  const [formValues, setFormValues] = useState(initialValues)
-  const [formErrors, setFormErrors] = useState(initialValues)
+const Home = () => {
+  const [step, setStep] = useState(0);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialValues);
 
-  const Container = [Contact, Private, ProfileImage, Success][step]
+  const Container = [Contact, Private, ProfileImage, Success][step];
 
   const handleClick = () => {
     if (step < 3) {
-      setStep(step + 1)
+      setStep(step + 1);
     }
-  }
+  };
   const handlePrev = () => {
-    if (step > 0) setStep(step - 1)
-  }
+    if (step > 0) setStep(step - 1);
+  };
 
   const handleChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     setFormErrors((previous) => ({
       ...previous,
-      [name]: '',
-    }))
+      [name]: "",
+    }));
     setFormValues((previous) => ({
       ...previous,
       [name]: value,
-    }))
+    }));
+  };
 
-  }
+  const handleSubmit = () => {
+    let result;
+
+    if (step === 0) {
+      result = validateStep(formValues);
+    }
+    if (step === 1) {
+      result = validateStepTwo(formValues);
+    }
+    if (step === 2) {
+      result = validateStepThree(formValues);
+    }
+    const { errors, isValid } = result;
+
+    setFormErrors(errors);
+    if (isValid) {
+      handleClick();
+    }
+  };
+
+  // console.log(formErrors);
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -41,7 +68,7 @@ const Home = (handleSubmit) => {
         exit={{ opacity: 0, x: -100 }}
         transition={{ duration: 0.5 }}
       >
-        <Container handleChange={handleChange} formValues={formValues} formErrors={formErrors} setFormErrors={setFormErrors} handleClick={handleClick}/>
+        <Container handleChange={handleChange} formErrors={formErrors} />
         <div className="buttonCon ">
           {step > 0 && step < 3 && (
             <button
@@ -62,6 +89,6 @@ const Home = (handleSubmit) => {
         </div>
       </motion.div>
     </AnimatePresence>
-  )
-}
-export default Home
+  );
+};
+export default Home;

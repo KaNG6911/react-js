@@ -1,10 +1,10 @@
-import { Header } from '../layer/Header'
+import { Header } from "../layer/Header";
 
-export const Private = ({ handleChange }) => {
+export const Private = ({ handleChange, formErrors }) => {
   return (
     <div className="flex flex-col w-150 h-200 bg-white rounded-2xl items-center">
       <Header />
-      <div className="flex flex-col gap-5 ">
+      <div className="flex flex-col gap-3 ">
         <div className="flex flex-col">
           Email *
           <input
@@ -13,6 +13,7 @@ export const Private = ({ handleChange }) => {
             onChange={handleChange}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
+          <p className="err">{formErrors.email}</p>
         </div>
         <div className="flex flex-col">
           Phone Number *
@@ -22,6 +23,7 @@ export const Private = ({ handleChange }) => {
             onChange={handleChange}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
+          <p className="err">{formErrors.phoneNumber}</p>
         </div>
         <div className="flex flex-col">
           Password *
@@ -31,6 +33,7 @@ export const Private = ({ handleChange }) => {
             onChange={handleChange}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
+          <p className="err">{formErrors.password}</p>
         </div>
         <div className="flex flex-col">
           Confirm Password *
@@ -40,8 +43,9 @@ export const Private = ({ handleChange }) => {
             onChange={handleChange}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
+          <p className="err">{formErrors.confirmPassword}</p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

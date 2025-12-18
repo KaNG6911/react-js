@@ -1,10 +1,10 @@
-import { Header } from '../layer/Header'
+import { Header } from "../layer/Header";
 
-export const ProfileImage = ({ handleChange }) => {
+export const ProfileImage = ({ handleChange, formErrors }) => {
   return (
     <div className="flex flex-col w-150 h-200 bg-white rounded-2xl items-center">
       <Header />
-      <div className="flex flex-col gap-10 ">
+      <div className="flex flex-col gap-5 ">
         <div className="flex flex-col">
           Birthday *
           <input
@@ -13,6 +13,7 @@ export const ProfileImage = ({ handleChange }) => {
             onChange={handleChange}
             className="w-40 h-10 rounded-[7px] border-gray-400 border-b pl-3"
           />
+          <p className="err">{formErrors.birthday}</p>
         </div>
         <div className="flex flex-col">
           Profile Image *
@@ -20,10 +21,11 @@ export const ProfileImage = ({ handleChange }) => {
             type="file"
             name="profileImage"
             onChange={handleChange}
-            className="w-120 h-50 rounded-[7px] border-gray-400 border pl-3"
+            className="w-120 h-50  rounded-[7px] border-gray-400 border pl-3"
           />
+          <p className="err z-1">{formErrors.ProfileImage}</p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
