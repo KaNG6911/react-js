@@ -1,6 +1,10 @@
 import { Header } from "../layer/Header";
+import { useState, useRef } from "react";
 
 export const ProfileImage = ({ handleChange, formErrors }) => {
+  const inputRef = useRef();
+  const [isDragging, setIsDragging] = useState(false);
+
   return (
     <div className="flex flex-col w-150 h-200 bg-white rounded-2xl items-center">
       <Header />
@@ -17,12 +21,29 @@ export const ProfileImage = ({ handleChange, formErrors }) => {
         </div>
         <div className="flex flex-col">
           Profile Image *
-          <input
-            type="file"
-            name="profileImage"
-            onChange={handleChange}
-            className="w-120 h-50  rounded-[7px] border-gray-400 border pl-3"
-          />
+          <div
+            style={{
+              display: "flex",
+              height: 200,
+              width: 480,
+              backgroundColor: "rgb(181, 180, 180)",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 8,
+              borderRadius: 10,
+              color: "white",
+              border: isDragging ? "2px dashed green" : "2px solid transparent",
+            }}
+          >
+            Drag and Drop
+            <input
+              type="file"
+              hidden
+              name="profileImage"
+              onChange={handleChange}
+              ref={inputRef}
+            />
+          </div>
           <p className="err z-1">{formErrors.ProfileImage}</p>
         </div>
       </div>

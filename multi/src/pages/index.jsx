@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Contact, Private, ProfileImage, Success } from "@/components/steps";
 import { initialValues } from "@/constants/initial";
@@ -7,6 +7,8 @@ import {
   validateStepThree,
   validateStepTwo,
 } from "@/utils/validators";
+import { saveFormValues } from "@/utils/LocalStorage";
+import { retrieveFormValues } from "@/utils/LocalStorage";
 
 const Home = () => {
   const [step, setStep] = useState(0);
@@ -51,13 +53,20 @@ const Home = () => {
     }
     const { errors, isValid } = result;
 
+    saveFormValues(formValues, step);
+
     setFormErrors(errors);
     if (isValid) {
       handleClick();
     }
   };
 
-  // console.log(formErrors);
+  useEffect(() => {
+    const valueFormLocalStorage = retrieveFormValues();
+    console.log(valueFormLocalStorage);
+  }, []);
+
+  // console.log(formValues);
 
   return (
     <AnimatePresence mode="wait">
