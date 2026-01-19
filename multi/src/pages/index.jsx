@@ -37,6 +37,8 @@ const Home = () => {
       ...previous,
       [name]: finalValue,
     }))
+
+   
   }
 
   const handleSubmit = () => {
@@ -92,7 +94,7 @@ const Home = () => {
               onClick={handleSubmit}
               className="flex bg-black text-white pt-4 pb-4 pr-33 pl-33 rounded-[10px]"
             >
-              Continue {step}/3
+              Continue {step+1}/3
             </button>
           )}
         </div>
