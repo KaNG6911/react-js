@@ -1,72 +1,70 @@
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Contact, Private, ProfileImage, Success } from '@/components/steps'
-import { initialValues } from '@/constants/initial'
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Contact, Private, ProfileImage, Success } from "@/components/steps";
+import { initialValues } from "@/constants/initial";
 import {
   validateStep,
   validateStepThree,
   validateStepTwo,
-} from '@/utils/validators'
-import { saveFormValues } from '@/utils/LocalStorage'
-import { retrieveFormValues } from '@/utils/LocalStorage'
+} from "@/utils/validators";
+import { saveFormValues } from "@/utils/LocalStorage";
+import { retrieveFormValues } from "@/utils/LocalStorage";
 
 const Home = () => {
-  const [step, setStep] = useState(0)
-  const [formValues, setFormValues] = useState(initialValues)
-  const [formErrors, setFormErrors] = useState(initialValues)
+  const [step, setStep] = useState(0);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialValues);
 
-  const Container = [Contact, Private, ProfileImage, Success][step]
+  const Container = [Contact, Private, ProfileImage, Success][step];
 
   const handleClick = () => {
     if (step < 3) {
-      setStep(step + 1)
+      setStep(step + 1);
     }
-  }
+  };
   const handlePrev = () => {
-    if (step > 0) setStep(step - 1)
-  }
+    if (step > 0) setStep(step - 1);
+  };
 
   const handleChange = (event) => {
-    const { name, value, files, type } = event.target
-    const finalValue = type === 'file' ? (files?.[0] ?? null) : value
+    const { name, value, files, type } = event.target;
+    const finalValue = type === "file" ? (files?.[0] ?? null) : value;
     setFormErrors((previous) => ({
       ...previous,
-      [name]: '',
-    }))
+      [name]: "",
+    }));
     setFormValues((previous) => ({
       ...previous,
       [name]: finalValue,
-    }))
-
-   
-  }
+    }));
+  };
 
   const handleSubmit = () => {
-    let result
+    let result;
 
     if (step === 0) {
-      result = validateStep(formValues)
+      result = validateStep(formValues);
     }
     if (step === 1) {
-      result = validateStepTwo(formValues)
+      result = validateStepTwo(formValues);
     }
     if (step === 2) {
-      result = validateStepThree(formValues)
+      result = validateStepThree(formValues);
     }
-    const { errors, isValid } = result
+    const { errors, isValid } = result;
 
-    saveFormValues(formValues, step)
+    saveFormValues(formValues, step);
 
-    setFormErrors(errors)
+    setFormErrors(errors);
     if (isValid) {
-      handleClick()
+      handleClick();
     }
-  }
+  };
 
   useEffect(() => {
-    const valueFormLocalStorage = retrieveFormValues()
-    console.log(valueFormLocalStorage)
-  }, [])
+    const valueFormLocalStorage = retrieveFormValues();
+    console.log(valueFormLocalStorage);
+  }, []);
 
   // console.log(formValues);
 
@@ -79,9 +77,13 @@ const Home = () => {
         exit={{ opacity: 0, x: -100 }}
         transition={{ duration: 0.5 }}
       >
-        <Container handleChange={handleChange} formErrors={formErrors} />
+        <Container
+          handleChange={handleChange}
+          formErrors={formErrors}
+          formValues={formValues}
+        />
         <div className="buttonCon ">
-          {step > 0 && step < 3 && (
+          {step > 0 && step < 4 && (
             <button
               onClick={handlePrev}
               className="flex bg-gray-500 text-white pt-4 pb-4 pr-15 pl-15 rounded-[10px]"
@@ -94,12 +96,12 @@ const Home = () => {
               onClick={handleSubmit}
               className="flex bg-black text-white pt-4 pb-4 pr-33 pl-33 rounded-[10px]"
             >
-              Continue {step+1}/3
+              Continue {step + 1}/3
             </button>
           )}
         </div>
       </motion.div>
     </AnimatePresence>
-  )
-}
-export default Home
+  );
+};
+export default Home;

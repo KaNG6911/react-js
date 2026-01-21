@@ -1,6 +1,7 @@
+// import { saveFormValues } from "@/utils/LocalStorage";
 import { Header } from "../layer/Header";
 
-export const Contact = ({ handleChange, formErrors }) => {
+export const Contact = ({ handleChange, formErrors, formValues }) => {
   // console.log(formErrors);
   return (
     <div className="flex flex-col w-150 h-200 bg-white rounded-2xl items-center">
@@ -12,6 +13,7 @@ export const Contact = ({ handleChange, formErrors }) => {
             type="text"
             name="firstName"
             onChange={handleChange}
+            value={formValues.firstName}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
           <p className="err">{formErrors.firstName}</p>
@@ -22,6 +24,7 @@ export const Contact = ({ handleChange, formErrors }) => {
             type="text"
             name="lastName"
             onChange={handleChange}
+            value={formValues.lastName}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
           <p className="err">{formErrors.lastName}</p>
@@ -32,6 +35,7 @@ export const Contact = ({ handleChange, formErrors }) => {
             type="text"
             name="userName"
             onChange={handleChange}
+            value={formValues.userName}
             className="w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
           />
           <p className="err">{formErrors.userName}</p>

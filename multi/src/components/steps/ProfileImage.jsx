@@ -2,7 +2,7 @@ import { Header } from "../layer/Header";
 // import { initialValues } from "@/constants/initial";
 import { useState, useRef } from "react";
 
-export const ProfileImage = ({ handleChange, formErrors }) => {
+export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
   const inputRef = useRef();
   const [isDragging, setIsDragging] = useState(false);
   const [imageURL, setImageURL] = useState("");
@@ -22,6 +22,8 @@ export const ProfileImage = ({ handleChange, formErrors }) => {
     handleChange({
       target: {
         name: "profileImage",
+        type: "file",
+        files: [file],
         value: file,
       },
     });
@@ -63,6 +65,7 @@ export const ProfileImage = ({ handleChange, formErrors }) => {
             type="date"
             name="birthday"
             onChange={handleChange}
+            value={formValues.birthday}
             className="w-40 h-10 rounded-[7px] border-gray-400 border-b pl-3"
           />
           <p className="err">{formErrors.birthday}</p>
@@ -91,19 +94,30 @@ export const ProfileImage = ({ handleChange, formErrors }) => {
               <img
                 src={imageURL}
                 alt="image/*"
+                value={
+                  formValues.profileImage && (
+                    <img src={formValues.profileImage} />
+                  )
+                }
                 className="flex w-50 h-50 z-10 object-cover rounded-[10px]"
               />
             ) : (
               "Browse or Drag and Drop"
             )}
+            {formValues.profileImage && imageURL && (
+              <button onClick={clearImage} className="flex bg-black p-3">
+                X
+              </button>
+            )}
             <input
               ref={inputRef}
               type="file"
               hidden
+              name="profileImage"
+              accept="image/*"
               onChange={(e) => handleUploadImage(e.target.files[0])}
             />
           </div>
-          <button onClick={clearImage}>X</button>
           <p className="err">{formErrors.profileImage}</p>
         </div>
       </div>
