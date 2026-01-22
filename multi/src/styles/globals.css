@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
 
 body {
   background-color: #f0f2f5;
@@ -16,5 +17,8 @@ body {
   gap: 17px;
 }
 .err {
-  color: red
+  color: rgb(245, 5, 5);
 }
+
+
+

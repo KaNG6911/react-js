@@ -83,20 +83,20 @@ const Home = () => {
           formValues={formValues}
         />
         <div className="buttonCon ">
-          {step > 0 && step < 4 && (
+          {step > 0 && step < 3 && (
             <button
               onClick={handlePrev}
-              className="flex bg-gray-500 text-white pt-4 pb-4 pr-15 pl-15 rounded-[10px]"
+              className="flex border-gray-400 border-2 font-medium text-black pt-3 pb-3 pr-9 pl-9 rounded-[10px]"
             >
-              Back
+              {"< Back"}
             </button>
           )}
           {step < 3 && (
             <button
               onClick={handleSubmit}
-              className="flex bg-black text-white pt-4 pb-4 pr-33 pl-33 rounded-[10px]"
+              className="flex bg-black font-medium text-white pt-3 pb-3 pr-29 pl-29 rounded-[10px]"
             >
-              Continue {step + 1}/3
+              Continue {step + 1}/3 {" >"}
             </button>
           )}
         </div>

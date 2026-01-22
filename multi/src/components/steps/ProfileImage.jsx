@@ -1,15 +1,13 @@
 import { Header } from "../layer/Header";
-// import { initialValues } from "@/constants/initial";
 import { useState, useRef } from "react";
 
 export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
   const inputRef = useRef();
   const [isDragging, setIsDragging] = useState(false);
   const [imageURL, setImageURL] = useState("");
-  // const [formValues, setFormValues] = useState(initialValues);
 
   const handleBrowseClick = () => {
-    if (inputRef.current) {
+    if (!formValues.profileImage) {
       inputRef.current.click();
     }
   };
@@ -43,8 +41,7 @@ export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
   const handleDrop = (event) => {
     event.preventDefault();
     setIsDragging(false);
-    const uploadedImage = event.dataTransfer.files[0];
-    handleUploadImage(uploadedImage);
+    handleUploadImage(event.dataTransfer.files[0]);
   };
 
   const handleDragOver = (event) => {
@@ -58,63 +55,58 @@ export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
   return (
     <div className="flex flex-col w-150 h-200 bg-white rounded-2xl items-center">
       <Header />
-      <div className="flex flex-col gap-5 ">
+      <div className="flex flex-col gap-5 w-120">
         <div className="flex flex-col">
-          Birthday *
+          <span>
+            Birthday<span className="text-red-500"> *</span>
+          </span>
           <input
             type="date"
             name="birthday"
             onChange={handleChange}
             value={formValues.birthday}
-            className="w-40 h-10 rounded-[7px] border-gray-400 border-b pl-3"
+            className={
+              (formErrors.birthday ? "border-red-500 " : "bg-blue-200") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
+            }
           />
           <p className="err">{formErrors.birthday}</p>
         </div>
         <div className="flex flex-col">
-          Profile Image *
+          <span>
+            Profile Image<span className="text-red-500"> *</span>
+          </span>
           <div
             onClick={handleBrowseClick}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
-            style={{
-              display: "flex",
-              height: 200,
-              width: 480,
-              backgroundColor: "rgb(181, 180, 180)",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 8,
-              borderRadius: 10,
-              color: "white",
-              border: isDragging ? "3px dashed green" : "2px solid transparent",
-            }}
+            className={`flex h-50 w-120 mt-2 rounded-[10px] justify-center items-center relative text-white bg-gray-300 ${isDragging ? "border-[3px] border-dashed border-green-500" : "border-0"} `}
           >
             {imageURL ? (
               <img
                 src={imageURL}
-                alt="image/*"
-                value={
-                  formValues.profileImage && (
-                    <img src={formValues.profileImage} />
-                  )
-                }
-                className="flex w-50 h-50 z-10 object-cover rounded-[10px]"
+                value={formValues.profileImage && <img src={imageURL} />}
+                className="flex w-full h-full object-cover rounded-[10px]"
               />
             ) : (
-              "Browse or Drag and Drop"
+              <span className="flex flex-col items-center gap-1">
+                <img src="Vector3.svg" className />
+                <p>Browse or Drag and Drop</p>
+              </span>
             )}
             {formValues.profileImage && imageURL && (
-              <button onClick={clearImage} className="flex bg-black p-3">
-                X
+              <button
+                onClick={clearImage}
+                className="flex bg-black p-3 absolute top-2 right-2 rounded-2xl z-10"
+              >
+                <img src="Vector2.png" />
               </button>
             )}
             <input
               ref={inputRef}
               type="file"
               hidden
-              name="profileImage"
-              accept="image/*"
               onChange={(e) => handleUploadImage(e.target.files[0])}
             />
           </div>
