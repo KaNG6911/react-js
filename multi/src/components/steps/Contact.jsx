@@ -17,9 +17,9 @@ export const Contact = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.firstName}
             className={
-              (formErrors.firstName ? "border-red-500" : "bg-blue-200") +
-              (formValues.firstName ? " bg-blue-200 " : "border-red-500") +
-              "w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
+              (formErrors.firstName ? "border-red-500 " : "") +
+              (formValues.firstName ? "bg-blue-200" : "") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
           <p className="err">{formErrors.firstName}</p>
@@ -34,8 +34,9 @@ export const Contact = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.lastName}
             className={
-              (formErrors.lastName ? "border-red-500 " : "bg-blue-200") +
-              "w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
+              (formErrors.lastName ? "border-red-500 " : "") +
+              (formValues.lastName ? "bg-blue-200" : "") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
           <p className="err">{formErrors.lastName}</p>
@@ -50,8 +51,9 @@ export const Contact = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.userName}
             className={
-              (formErrors.userName ? "border-red-500 " : "bg-blue-200") +
-              "w-120 h-10 rounded-[7px] border-b border-gray-400 pl-3"
+              (formErrors.userName ? "border-red-500  " : "") +
+              (formValues.userName ? "bg-blue-200" : "") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
           <p className="err">{formErrors.userName}</p>

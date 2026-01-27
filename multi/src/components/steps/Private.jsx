@@ -15,8 +15,9 @@ export const Private = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.email || ""}
             className={
-              (formErrors.email ? "border-red-500 " : "bg-blue-200") +
-              " h-10 w-120 rounded-[7px] border-b border-gray-400 pl-3"
+              (formErrors.email ? "border-red-500 " : "") +
+              (formValues.email ? "bg-blue-200" : "") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
           <p className="err">{formErrors.email}</p>
@@ -31,7 +32,8 @@ export const Private = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.phoneNumber}
             className={
-              (formErrors.phoneNumber ? "border-red-500 " : "bg-blue-200") +
+              (formErrors.phoneNumber ? "border-red-500 " : "") +
+              (formValues.phoneNumber ? "bg-blue-200" : "") +
               " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
@@ -47,7 +49,8 @@ export const Private = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.password}
             className={
-              (formErrors.password ? "border-red-500 " : "bg-blue-200") +
+              (formErrors.password ? "border-red-500 " : "") +
+              (formValues.password ? "bg-blue-200" : "") +
               " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />
@@ -63,7 +66,8 @@ export const Private = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.confirmPassword}
             className={
-              (formErrors.confirmPassword ? "border-red-500 " : "bg-blue-200") +
+              (formErrors.confirmPassword ? "border-red-500 " : "") +
+              (formValues.confirmPassword ? "bg-blue-200" : "") +
               " h-10 w-120 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />

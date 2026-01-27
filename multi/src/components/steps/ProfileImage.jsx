@@ -22,7 +22,7 @@ export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
         name: "profileImage",
         type: "file",
         files: [file],
-        value: file,
+        value: imageURL,
       },
     });
   };
@@ -66,7 +66,7 @@ export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.birthday}
             className={
-              (formErrors.birthday ? "border-red-500 " : "bg-blue-200") +
+                   (formErrors.birthday ? "border-red-500 " : "") + (formValues.birthday ? "bg-blue-200" : "") +
               " h-10 rounded-[7px] border-b border-gray-400 pl-3"
             }
           />

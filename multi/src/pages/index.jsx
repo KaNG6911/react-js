@@ -62,11 +62,13 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const valueFormLocalStorage = retrieveFormValues();
-    console.log(valueFormLocalStorage);
+    const saved = retrieveFormValues();
+    if (saved) {
+      setFormValues(saved);
+      setStep(saved.step || 0);
+      localStorage.clear();
+    }
   }, []);
-
-  // console.log(formValues);
 
   return (
     <AnimatePresence mode="wait">
