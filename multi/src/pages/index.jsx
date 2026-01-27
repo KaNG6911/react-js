@@ -68,6 +68,7 @@ const Home = () => {
       setStep(saved.step || 0);
       localStorage.clear();
     }
+    console.log(formValues);
   }, []);
 
   return (
