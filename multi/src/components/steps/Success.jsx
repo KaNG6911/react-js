@@ -1,4 +1,7 @@
-export const Success = () => {
+import React from "react";
+
+export const Success = ({ formValues }) => {
+  console.log(formValues);
   return (
     <div className="flex flex-col w-120 h-45 p-9 bg-white rounded-2xl justify-center items-start text-4xl">
       <img className="w-17" src="Pinecone.svg" alt="" />

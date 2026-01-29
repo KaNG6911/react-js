@@ -1,9 +1,9 @@
 export const saveFormValues = (formValues, step) => {
-  const { image, ...rest } = formValues;
+  const { profileImage, ...rest } = formValues;
 
   localStorage.setItem(
     "formValue",
-    JSON.stringify({ ...formValues, step: step + 1 }),
+    JSON.stringify({ ...rest, step: step + 1 }),
   );
 };
 export const retrieveFormValues = () => {

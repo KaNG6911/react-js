@@ -66,8 +66,9 @@ export const ProfileImage = ({ handleChange, formErrors, formValues }) => {
             onChange={handleChange}
             value={formValues.birthday}
             className={
-                   (formErrors.birthday ? "border-red-500 " : "") + (formValues.birthday ? "bg-blue-200" : "") +
-              " h-10 rounded-[7px] border-b border-gray-400 pl-3"
+              (formErrors.birthday ? "border-red-500 " : "") +
+              (formValues.birthday ? "bg-blue-200" : "") +
+              " h-10 rounded-[7px] border-b border-gray-400 pl-3 pr-3"
             }
           />
           <p className="err">{formErrors.birthday}</p>

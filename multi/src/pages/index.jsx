@@ -9,6 +9,7 @@ import {
 } from "@/utils/validators";
 import { saveFormValues } from "@/utils/LocalStorage";
 import { retrieveFormValues } from "@/utils/LocalStorage";
+import { set } from "mongoose";
 
 const Home = () => {
   const [step, setStep] = useState(0);
@@ -53,22 +54,32 @@ const Home = () => {
     }
     const { errors, isValid } = result;
 
-    saveFormValues(formValues, step);
-
     setFormErrors(errors);
     if (isValid) {
+      saveFormValues(formValues, step);
       handleClick();
     }
   };
 
   useEffect(() => {
     const saved = retrieveFormValues();
-    if (saved) {
-      setFormValues(saved);
-      setStep(saved.step || 0);
-      localStorage.clear();
+    if (!saved) return;
+
+    if (saved.step === 3) {
+      localStorage.removeItem("formValue");
+      setStep(0);
+      setFormValues(initialValues);
+      return;
     }
-    console.log(formValues);
+
+    let validStep = 0;
+
+    if (validateStep(saved).isValid) validStep = 1;
+    if (validateStepTwo(saved).isValid) validStep = 2;
+    if (validateStepThree(saved).isValid) validStep = 3;
+
+    setFormValues(saved);
+    setStep(validStep);
   }, []);
 
   return (
