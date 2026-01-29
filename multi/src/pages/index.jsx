@@ -7,9 +7,8 @@ import {
   validateStepThree,
   validateStepTwo,
 } from "@/utils/validators";
-import { saveFormValues } from "@/utils/LocalStorage";
-import { retrieveFormValues } from "@/utils/LocalStorage";
-import { set } from "mongoose";
+import { saveFormValues } from "@/utils/localStorage";
+import { retrieveFormValues } from "@/utils/localStorage";
 
 const Home = () => {
   const [step, setStep] = useState(0);

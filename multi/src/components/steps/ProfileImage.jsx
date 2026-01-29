@@ -1,4 +1,4 @@
-import { Header } from "../layer/Header";
+import { Header } from "../layer/header";
 import { useState, useRef } from "react";
 
 export const ProfileImage = ({ handleChange, formErrors, formValues }) => {

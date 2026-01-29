@@ -1,4 +1,4 @@
-import { Header } from "../layer/Header";
+import { Header } from "../layer/header";
 
 export const Private = ({ handleChange, formErrors, formValues }) => {
   return (

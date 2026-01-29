@@ -1,5 +1,5 @@
 // import { saveFormValues } from "@/utils/LocalStorage";
-import { Header } from "../layer/Header";
+import { Header } from "../layer/header";
 
 export const Contact = ({ handleChange, formErrors, formValues }) => {
   // console.log(formErrors);
